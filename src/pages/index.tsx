@@ -1,6 +1,7 @@
-import { Divider, Text } from "@nextui-org/react";
+import { Button, Divider, Text } from "@nextui-org/react";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
+import { AiOutlineClear } from "react-icons/ai";
 import { MultiSongs, SingleSongs } from "../assets/songs";
 import CardSong from "../components/CardSong";
 import ContainerDB from "../components/Container";
@@ -8,6 +9,15 @@ import ContainerDB from "../components/Container";
 const Home: NextPage = () => {
   const [activeSong, setActiveSong] = useState([]);
   const [volum, setVolum] = useState([]);
+
+  const handleStopAll = () => {
+    const audio: any = document.getElementsByTagName("audio");
+    for (let i = 0; i < audio.length; i++) {
+      audio[i].pause();
+    }
+
+    setActiveSong([]);
+  };
 
   const toggleSong = (id: number) => {
     if (activeSong.includes(id)) {
@@ -47,50 +57,72 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <div>
-      <Text
-        h2
-        css={{
-          p: "1rem 0 2rem 0.5rem",
+    <>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
         }}
       >
-        Single Songs
-      </Text>
-      <ContainerDB>
-        {SingleSongs.map((song, i) => (
-          <CardSong
-            key={i}
-            song={song}
-            activeSong={activeSong}
-            toggleSong={toggleSong}
-            volum={volum}
-            onChangeVolum={onChangeVolum}
-          />
-        ))}
-      </ContainerDB>
+        <Button
+          onClick={handleStopAll}
+          title="Stop All"
+          auto
+          ghost
+          color="error"
+          css={{
+            p: "0.5rem",
+          }}
+        >
+          <AiOutlineClear size={30} />
+        </Button>
+      </div>
+      <div>
+        <Text
+          h2
+          css={{
+            p: "1rem 0 2rem 0.5rem",
+          }}
+        >
+          Single Songs
+        </Text>
+        <ContainerDB>
+          {SingleSongs.map((song, i) => (
+            <CardSong
+              key={i}
+              song={song}
+              activeSong={activeSong}
+              toggleSong={toggleSong}
+              volum={volum}
+              onChangeVolum={onChangeVolum}
+            />
+          ))}
+        </ContainerDB>
 
-      <Divider />
-      <Text
-        h2
-        css={{
-          p: "2rem 0 2rem 0.5rem",
-        }}
-      >
-        Ambience Songs
-      </Text>
-      <ContainerDB>
-        {MultiSongs.map((song, i) => (
-          <CardSong
-            key={i}
-            song={song}
-            activeSong={activeSong}
-            toggleSong={toggleSong}
-            volum={volum}
-            onChangeVolum={onChangeVolum}
-          />
-        ))}
-      </ContainerDB>
-    </div>
+        <Divider />
+        <Text
+          h2
+          css={{
+            p: "2rem 0 2rem 0.5rem",
+          }}
+        >
+          Ambience Songs
+        </Text>
+        <ContainerDB>
+          {MultiSongs.map((song, i) => (
+            <CardSong
+              key={i}
+              song={song}
+              activeSong={activeSong}
+              toggleSong={toggleSong}
+              volum={volum}
+              onChangeVolum={onChangeVolum}
+            />
+          ))}
+        </ContainerDB>
+      </div>
+    </>
   );
 };
 

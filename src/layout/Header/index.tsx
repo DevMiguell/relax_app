@@ -1,4 +1,5 @@
-import { Container, Row, Text } from "@nextui-org/react";
+import { Button, Container, Row, Text } from "@nextui-org/react";
+import { CgUser } from "react-icons/cg";
 
 const Header = () => {
   return (
@@ -12,15 +13,24 @@ const Header = () => {
     >
       <Container sm>
         <Row align="center" justify="space-between">
-          <Text
-            css={{
-              fontWeight: "bold",
+          <Text h3>RELAX.SOUNDS</Text>
+
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
             }}
           >
-            RELAX.SOUNDS
-          </Text>
-
-          <div>ACTION BUTTONS</div>
+            <Button
+              auto
+              ghost
+              css={{
+                p: "0.5rem",
+              }}
+            >
+              <CgUser size={30} />
+            </Button>
+          </div>
         </Row>
       </Container>
     </header>
