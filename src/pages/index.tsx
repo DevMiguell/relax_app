@@ -1,12 +1,12 @@
+import { Divider, Text } from "@nextui-org/react";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import { AllSongs } from "../assets/songs";
+import { MultiSongs, SingleSongs } from "../assets/songs";
 import CardSong from "../components/CardSong";
 import ContainerDB from "../components/Container";
 
 const Home: NextPage = () => {
   const [activeSong, setActiveSong] = useState([]);
-  // const audioRef = useRef(null);\
   const [volum, setVolum] = useState([]);
 
   const toggleSong = (id: number) => {
@@ -47,18 +47,50 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <ContainerDB>
-      {AllSongs.map((song, i) => (
-        <CardSong
-          key={i}
-          song={song}
-          activeSong={activeSong}
-          toggleSong={toggleSong}
-          volum={volum}
-          onChangeVolum={onChangeVolum}
-        />
-      ))}
-    </ContainerDB>
+    <div>
+      <Text
+        h2
+        css={{
+          p: "1rem 0 2rem 0.5rem",
+        }}
+      >
+        Single Songs
+      </Text>
+      <ContainerDB>
+        {SingleSongs.map((song, i) => (
+          <CardSong
+            key={i}
+            song={song}
+            activeSong={activeSong}
+            toggleSong={toggleSong}
+            volum={volum}
+            onChangeVolum={onChangeVolum}
+          />
+        ))}
+      </ContainerDB>
+
+      <Divider />
+      <Text
+        h2
+        css={{
+          p: "2rem 0 2rem 0.5rem",
+        }}
+      >
+        Ambience Songs
+      </Text>
+      <ContainerDB>
+        {MultiSongs.map((song, i) => (
+          <CardSong
+            key={i}
+            song={song}
+            activeSong={activeSong}
+            toggleSong={toggleSong}
+            volum={volum}
+            onChangeVolum={onChangeVolum}
+          />
+        ))}
+      </ContainerDB>
+    </div>
   );
 };
 

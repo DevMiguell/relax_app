@@ -38,6 +38,7 @@ export default function CardSong({
         <CgMusic size={100} />
         <p
           style={{
+            textAlign: "center",
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
