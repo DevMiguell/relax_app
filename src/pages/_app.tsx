@@ -1,9 +1,9 @@
 import { createTheme, NextUIProvider } from "@nextui-org/react";
-import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
 import { Layout } from "../layout";
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, session, pageProps }) {
   const darkTheme = createTheme({
     type: "dark",
     theme: {
@@ -12,11 +12,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <NextUIProvider theme={darkTheme}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </NextUIProvider>
+    <SessionProvider session={session}>
+      <NextUIProvider theme={darkTheme}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </NextUIProvider>
+    </SessionProvider>
   );
 }
 

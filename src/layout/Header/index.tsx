@@ -1,5 +1,7 @@
 import { Button, Container, Row, Text } from "@nextui-org/react";
+import { signOut } from "next-auth/react";
 import { CgUser } from "react-icons/cg";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const Header = () => {
   return (
@@ -21,6 +23,17 @@ const Header = () => {
               gap: "1rem",
             }}
           >
+            <Button
+              auto
+              ghost
+              color="error"
+              onClick={() => signOut()}
+              css={{
+                p: "0.5rem",
+              }}
+            >
+              <FaSignOutAlt size={30} />
+            </Button>
             <Button
               auto
               ghost
