@@ -28,6 +28,5 @@ export default NextAuth({
   secret: "secret",
   jwt: {
     secret: "ksdkfsldferSDFSDFSDf",
-    encryption: true,
   },
 });
