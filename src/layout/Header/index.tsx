@@ -1,7 +1,7 @@
-import { Button, Container, Row, Text } from "@nextui-org/react";
-import { signOut } from "next-auth/react";
-import { CgUser } from "react-icons/cg";
-import { FaSignOutAlt } from "react-icons/fa";
+import { Button, Container, Row } from "@nextui-org/react";
+import Image from "next/image";
+import { BiUser } from "react-icons/bi";
+import { VscSignOut } from "react-icons/vsc";
 
 const Header = () => {
   return (
@@ -15,7 +15,7 @@ const Header = () => {
     >
       <Container sm>
         <Row align="center" justify="space-between">
-          <Text h3>RELAX.SOUNDS</Text>
+          <Image src="/logo.svg" alt="Logo" width={80} height={80} />
 
           <div
             style={{
@@ -26,22 +26,36 @@ const Header = () => {
             <Button
               auto
               ghost
-              color="error"
-              onClick={() => signOut()}
+              title="Sair"
               css={{
                 p: "0.5rem",
+                border: "none",
+                color: "#fff",
+
+                "&:hover": {
+                  backgroundColor: "#fff",
+                  color: "#000",
+                },
               }}
             >
-              <FaSignOutAlt size={30} />
+              <VscSignOut size={30} />
             </Button>
             <Button
               auto
               ghost
+              title="Perfil"
               css={{
                 p: "0.5rem",
+                border: "none",
+                color: "#fff",
+
+                "&:hover": {
+                  backgroundColor: "#fff",
+                  color: "#000",
+                },
               }}
             >
-              <CgUser size={30} />
+              <BiUser size={30} />
             </Button>
           </div>
         </Row>

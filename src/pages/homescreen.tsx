@@ -8,7 +8,6 @@ import ContainerDB from "../components/Container";
 import Header from "../layout/Header";
 
 export default function Home({ user }) {
-  console.log(user);
   const [activeSong, setActiveSong] = useState([]);
   const [volum, setVolum] = useState([]);
 
@@ -53,7 +52,7 @@ export default function Home({ user }) {
   useEffect(() => {
     activeSong.map((songId) => {
       const audio: any = document.getElementById(`audio-${songId}`);
-      audio.volume = 10;
+      audio.volume = 50;
       audio.pause();
     });
   }, []);
@@ -79,7 +78,6 @@ export default function Home({ user }) {
             title="Stop All"
             auto
             ghost
-            color="secondary"
             css={{
               p: "0.5rem",
               border: "none",
